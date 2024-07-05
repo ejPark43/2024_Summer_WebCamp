@@ -1,7 +1,11 @@
 import React from "react";
-
+import MainPage from "./pages/MainPage";
 function App() {
-  return <div>App</div>;
+  return (
+    <div style={{ margin: 0 }}>
+      <MainPage />
+    </div>
+  );
 }
 
 export default App;
