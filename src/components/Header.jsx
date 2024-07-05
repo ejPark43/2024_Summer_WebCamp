@@ -73,7 +73,7 @@ const HeaderBottom = styled.div`
     height: 60%;
     border: 2px solid pink;
     align-items: center;
-    justify-content: space-evenly; // <<<<<<< 나중에 수정 -> margin으로...
+    justify-content: space-between; // <<<<<<< 나중에 수정 -> margin으로...
   }
   .header-bottom-hamburger-btn {
     display: flex;
