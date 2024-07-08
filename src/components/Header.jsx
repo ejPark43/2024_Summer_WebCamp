@@ -204,12 +204,12 @@ const HeaderBottom = styled.div`
     position: relative; // <<<<<< 여기다가 relative 추가해줘야 메뉴바 버튼 잘 나온다.
     /* border: 2px solid green; */
     padding-bottom: 18px;
-    .seller-center {
-      display: flex;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  }
+  .seller-center {
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
   }
 `;
 
