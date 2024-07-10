@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../asset/bungae.svg";
 import appLogo from "../asset/applogo.svg";
@@ -18,6 +19,8 @@ function Header() {
   const handleMouseLeave = () => {
     setShowMenu(false);
   };
+
+  const navigate = useNavigate();
   return (
     <div>
       <HeaderTop>
@@ -40,7 +43,15 @@ function Header() {
       <HeaderBottom>
         <div className="header-bottom-part">
           <div className="header-bottom-search-area ">
-            <img src={logo} alt="Logo" width="130" height="45" />
+            <img
+              src={logo}
+              alt="Logo"
+              width="130"
+              height="45"
+              onClick={() => {
+                navigate("/");
+              }}
+            />
             {/* <SearchField placeholder="상품명, 지역명, @상점명 입력"></SearchField> */}
             <SearchContainer>
               <SearchField placeholder="상품명, 지역명, @상점명 입력" />
@@ -180,6 +191,10 @@ const HeaderBottom = styled.div`
     align-items: center;
     padding: 10px 20px;
     justify-content: space-between; // <<<<<<< 나중에 수정 -> margin으로...
+    > img {
+      // 번개장터 로고
+      cursor: pointer;
+    }
     .img-buttons {
       display: flex;
       align-items: center;

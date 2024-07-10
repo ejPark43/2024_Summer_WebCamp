@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import React from "react";
 import ProductCard from "./ProductCard";
-
+import { useNavigate } from "react-router-dom";
 function Products() {
+  const navigate = useNavigate(); // useNavigate 쓰려면 react-router-dom 설치 필요
+
+  const gotoCreate = () => {
+    console.log("GOTO CREATE");
+    navigate("/create");
+  };
   return (
     <div>
       <ProductsArea>
         <ProductsHeader>
           <h2 className="product-suggest">오늘의 상품</h2>
           <div className="product-crud">
-            <div>추가</div>
-            <div>삭제</div>
-            <div>수정</div>
+            <div onClick={gotoCreate}>추가하기</div>
           </div>
         </ProductsHeader>
         <ProductCards>
@@ -45,8 +49,8 @@ const ProductsHeader = styled.div`
   .product-crud {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 200px;
+    justify-content: end;
+    width: 250px;
     margin-right: 10px;
     /* border: 2px solid red; */
     > div {
@@ -55,7 +59,8 @@ const ProductsHeader = styled.div`
       align-items: center;
       border-bottom: 1px solid #333333;
       /* border-radius: 4px; */
-      width: 50px;
+      /* width: 0px; */
+      margin-right: 11px;
       height: 30px;
       cursor: pointer;
       transition: 0.1s;

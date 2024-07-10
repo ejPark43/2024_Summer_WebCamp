@@ -91,7 +91,7 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
   /* overflow: scroll; */
 `;
 const Card = styled.div`
@@ -101,6 +101,7 @@ const Card = styled.div`
   height: 270px;
   margin-bottom: 15px;
   width: 190px;
+  margin-right: 1vw;
   cursor: pointer;
   > img {
     width: 190px;
