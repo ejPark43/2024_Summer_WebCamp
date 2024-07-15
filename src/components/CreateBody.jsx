@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import registerImg from "../asset/registerImg.png";
 function CreateBody() {
   const [nameCounter, setNameCounter] = useState(0);
   const writeName = (e) => {
@@ -16,6 +17,19 @@ function CreateBody() {
   };
 
   const navigate = useNavigate();
+
+  // const [imgFile, setImgFile] = useState<File>();
+  const [imgPath, setImgPath] = useState("");
+  const photoInput = useRef();
+
+  const handleImageClick = () => {
+    photoInput.current.click();
+  };
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImgPath(URL.createObjectURL(event.target.files[0]));
+    }
+  };
   return (
     <div>
       <form onSubmit={submitPost}>
@@ -26,7 +40,21 @@ function CreateBody() {
                 상품이미지 <span>(0/12)</span>
               </PartTitle>
               <div className="img-box">
-                <div className="img-upload">이미지 등록</div>
+                <div className="img-upload" onClick={handleImageClick}>
+                  <img
+                    src={imgPath || registerImg}
+                    alt="registerimage"
+                    className="img-image"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={photoInput}
+                    style={{ display: "none" }}
+                    onChange={handleImageChange}
+                  />
+                </div>
+                {/* <div className="img-upload">이미지 등록</div> */}
                 상품 이미지는 pc에서는 1:1, 모바일에서는 1:1.23 비율로 보여져요.
               </div>
             </UploadImgBox>
@@ -264,12 +292,18 @@ const UploadImgBox = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 2px solid black;
+      border: 1px solid gray;
       width: 190px;
       height: 190px;
       /* margin-top: 20px; */
       margin-bottom: 20px;
       cursor: pointer;
+
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // 이미지 원본 비율 유지하면서 해당 칸에 꽉차게 들어가도록 설정함.
+      }
     }
   }
 
