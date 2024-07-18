@@ -9,6 +9,7 @@ import bungaetalk from "../asset/bungaetalk.png";
 import sellImg from "../asset/sellImg.png";
 import mystore from "../asset/mystoreimg.png";
 import MenuIcon from "@mui/icons-material/Menu";
+import Weather from "./weather";
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -34,7 +35,9 @@ function Header() {
               <img src={favorite} width="17" height="17" alt="favorite"></img>
               <span>즐겨찾기</span>
             </div>
+            <Weather />
           </div>
+
           <div className="right-btns">
             <div>로그인/회원가입</div> <div>내상점</div>
           </div>

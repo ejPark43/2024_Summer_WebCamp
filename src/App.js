@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // 라우터 쓰기 위해서 react-router-dom 설치
 import MainPage from "./pages/MainPage";
 import CreatePage from "./pages/CreatePage";
+import ProductPage from "./pages/ProductPage";
 function App() {
   // App.js에서 라우트를 세팅해줌.
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/create" element={<CreatePage />}></Route>
           <Route path="/" element={<MainPage />}></Route>
+          <Route path="/view" element={<ProductPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
