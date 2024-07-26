@@ -13,7 +13,7 @@ const ProductDetail = () => {
   });
 
   const { id } = useParams();
-  const backurl = process.env.BACK_URL;
+  const backurl = process.env.REACT_APP_BACK_URL;
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -36,7 +36,7 @@ const ProductDetail = () => {
   }, []);
 
   const navigate = useNavigate();
-  const url = process.env.BACK_URL;
+  const url = process.env.REACT_APP_BACK_URL;
   const handleDelete = async () => {
     try {
       await axios.delete(url + `board/delete/${post.id}`); // 해당 URL로 수정
