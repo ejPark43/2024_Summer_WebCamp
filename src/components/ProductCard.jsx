@@ -9,7 +9,7 @@ function ProductCard() {
 
   useEffect(() => {
     axios
-      .get("/board/")
+      .get(process.env.BACK_URL + "board/")
       .then((response) => {
         setPosts(response.data);
         console.log(response.data);
