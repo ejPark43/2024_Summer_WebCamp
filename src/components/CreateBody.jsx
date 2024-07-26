@@ -71,7 +71,7 @@ function CreateBody() {
     // eslint-disable-next-line
     const url = process.env.BACK_URL + "board/save"; // 백엔드의 URL로 변경
     try {
-      const response = await axios.post("/board/save", postData);
+      const response = await axios.post(url, postData);
       console.log(response.data); // 서버로부터 응답을 확인합니다.
       console.log("?????"); // 서버로부터 응답을 확인합니다.
       navigate("/");
