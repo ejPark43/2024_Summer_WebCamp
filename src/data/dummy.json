@@ -1,0 +1,23 @@
+{
+  "products": [
+    {
+      "title": "농담곰 인형",
+      "date": "2024.07.16",
+      "price": "15,000",
+      "imgUrl": "https://image.yes24.com/goods/122341966/XL"
+    },
+
+    {
+      "title": "빨간색 사탕 100g",
+      "date": "2024.07.21",
+      "price": "1,500",
+      "imgUrl": "https://www.cabfoods.co.za/wp-content/uploads/2022/01/cabfoods-red-balls.jpg"
+    },
+    {
+      "title": "MLB 볼캡 모자",
+      "date": "2024.07.21",
+      "price": "50,0000",
+      "imgUrl": "https://cafe24.poxo.com/ec01/caugoal/HOvhRhvOk+Cp2KY4JuusApBEsWvYruGVAbdz52LHiENksA8W3TaoewJFskko+jVmcS1ZNIdKGwI+OqgEy0y13A==/_/web/product/big/202303/17ba32cd8ae577a90eb99c14c909bf94.jpg"
+    }
+  ]
+}

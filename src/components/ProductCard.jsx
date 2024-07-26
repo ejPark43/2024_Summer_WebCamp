@@ -1,112 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+
 function ProductCard() {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/board/")
+      .then((response) => {
+        setPosts(response.data);
+        console.log(response.data);
+
+        // if (response.data.boardImg.charAt(0) == "b") {
+        //   const blob = URL.createObjectURL(response.data.boardImg); // boardImg내용이 blob://http....이런 형식으로 되어있어서 이미지 url로 변경함.
+
+        //   setPosts((prev) => ({
+        //     ...prev, // 다른 데이터는 동일하게 놓고
+        //     boardImg: blob, // 이미지만 다르게 바꿈.
+        //   }));
+        // }
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the board list!", error);
+      });
+  }, []);
+
+  // 날짜 string 변환 mm.dd 형식으로..
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${month}.${day}`;
+  };
+
   return (
     <CardContainer>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://image.yes24.com/goods/122341966/XL"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title"> 농담곰 인형</div>
-          <div className="product-info">
-            <div className="product-info-price">15,000원</div>
-            <span className="product-info-date">20시간 전</span>
-          </div>
-        </div>
-      </Card>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://www.cabfoods.co.za/wp-content/uploads/2022/01/cabfoods-red-balls.jpg"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title"> 빨간색 사탕 100g</div>
-          <div className="product-info">
-            <div className="product-info-price">1,500원</div>
-            <span className="product-info-date">2일 전</span>
-          </div>
-        </div>
-      </Card>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://images.kolonmall.com/Prod_Img/CJ/2021/LM6/J3TEA21703GYM_LM6.jpg"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title"> 후드티 L 사이즈 한번착용</div>
-          <div className="product-info">
-            <div className="product-info-price">39,000원</div>
-            <span className="product-info-date">2일 전</span>
-          </div>
-        </div>
-      </Card>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://cafe24.poxo.com/ec01/caugoal/HOvhRhvOk+Cp2KY4JuusApBEsWvYruGVAbdz52LHiENksA8W3TaoewJFskko+jVmcS1ZNIdKGwI+OqgEy0y13A==/_/web/product/big/202303/17ba32cd8ae577a90eb99c14c909bf94.jpg"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title"> MLB 볼캡 모자</div>
-          <div className="product-info">
-            <div className="product-info-price">50,000원</div>
-            <span className="product-info-date">3일 전</span>
-          </div>
-        </div>
-      </Card>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3BmLXMxMDgtcG0tNDExMy1tb2NrdXAuanBn.jpg"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title">미개봉 샴푸 M</div>
-          <div className="product-info">
-            <div className="product-info-price">12,000원</div>
-            <span className="product-info-date">5일 전</span>
-          </div>
-        </div>
-      </Card>
-      <Card
-        onClick={() => {
-          navigate("/view");
-        }}
-      >
-        <img
-          src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg"
-          alt="example"
-        ></img>
-        <div>
-          <div className="product-title"> 중고 카메라</div>
-          <div className="product-info">
-            <div className="product-info-price">150,000원</div>
-            <span className="product-info-date">1주 전</span>
-          </div>
-        </div>
-      </Card>
+      {posts &&
+        posts.map((product) => (
+          <Card
+            key={product.id}
+            onClick={() => {
+              navigate(`/view/${product.id}`);
+            }}
+          >
+            <img src={product.boardImg} alt="example"></img>
+            <div>
+              <div className="product-title">{product.boardTitle}</div>
+              <div className="product-info">
+                <div className="product-info-price">{product.boardPrice}원</div>
+                <span className="product-info-date">
+                  {formatDate(product.boardCreatedTime)}
+                </span>
+              </div>
+            </div>
+          </Card>
+        ))}
     </CardContainer>
   );
 }

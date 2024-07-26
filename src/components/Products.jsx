@@ -10,19 +10,17 @@ function Products() {
     navigate("/create");
   };
   return (
-    <div>
-      <ProductsArea>
-        <ProductsHeader>
-          <h2 className="product-suggest">오늘의 상품</h2>
-          <div className="product-crud">
-            <div onClick={gotoCreate}>추가하기</div>
-          </div>
-        </ProductsHeader>
-        <ProductCards>
-          <ProductCard />
-        </ProductCards>
-      </ProductsArea>
-    </div>
+    <ProductsArea>
+      <ProductsHeader>
+        <h2 className="product-suggest">오늘의 상품</h2>
+        <div className="product-crud">
+          <div onClick={gotoCreate}>추가하기</div>
+        </div>
+      </ProductsHeader>
+      <ProductCards>
+        <ProductCard />
+      </ProductCards>
+    </ProductsArea>
   );
 }
 
@@ -32,7 +30,7 @@ const ProductsArea = styled.div`
   display: flex;
   flex-direction: column;
   /* border: 2px solid pink; */
-  height: 500px; /// << 임시 크기. 나중에 변환...
+  /* height: 500px; /// << 임시 크기. 나중에 변환... */
 `;
 const ProductsHeader = styled.div`
   display: flex;

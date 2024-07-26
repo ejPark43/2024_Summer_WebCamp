@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // 라우터 �
 import MainPage from "./pages/MainPage";
 import CreatePage from "./pages/CreatePage";
 import ProductPage from "./pages/ProductPage";
+// import WritePost from "./components/WritePost";
+import UpdatePage from "./pages/UpdatePage";
 function App() {
   // App.js에서 라우트를 세팅해줌.
 
@@ -15,7 +17,9 @@ function App() {
         <Routes>
           <Route path="/create" element={<CreatePage />}></Route>
           <Route path="/" element={<MainPage />}></Route>
-          <Route path="/view" element={<ProductPage />}></Route>
+          <Route path="/view/:id" element={<ProductPage />}></Route>
+          <Route path="/update/:id" element={<UpdatePage />}></Route>
+          {/* <Route path="/write" element={<WritePost />}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>
