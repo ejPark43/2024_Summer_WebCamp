@@ -22,10 +22,11 @@ const ProductUpdate = () => {
   const navigate = useNavigate();
   const photoInput = useRef();
 
+  const url = process.env.BACK_URL;
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/board/${id}`); // 백엔드에서 데이터를 가져오는 URL로 변경
+        const response = await axios.get(url + `board/${id}`); // 백엔드에서 데이터를 가져오는 URL로 변경
         const data = response.data;
         setProduct(data);
         setNameCounter(data.boardTitle.length);
@@ -96,9 +97,10 @@ const ProductUpdate = () => {
       boardCreatedTime: product.boardCreatedTime,
     };
 
+    const backurl = process.env.BACK_URL;
     try {
       // 백엔드측에서 @RequestBody를 통해 BoardDTO 객체를 받기 때문에 formdata대신에 JSON형식으로 데이터 보내야함!!!!
-      await axios.post(`http://localhost:8080/board/update`, updatedProduct, {
+      await axios.post(backurl + `board/update`, updatedProduct, {
         headers: {
           "Content-Type": "application/json",
         },

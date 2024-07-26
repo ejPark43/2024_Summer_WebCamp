@@ -13,11 +13,11 @@ const ProductDetail = () => {
   });
 
   const { id } = useParams();
-
+  const backurl = process.env.BACK_URL;
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/board/${id}`); // 백엔드에서 데이터를 가져오는 URL로 변경
+        const response = await axios.get(backurl + `board/${id}`); // 백엔드에서 데이터를 가져오는 URL로 변경
         setPost(response.data); // 받아온 데이터를 다 넣어줌.
         const blob = URL.createObjectURL(response.data.boardImg); // boardImg내용이 blob://http....이런 형식으로 되어있어서 이미지 url로 변경함.
 
@@ -36,10 +36,10 @@ const ProductDetail = () => {
   }, []);
 
   const navigate = useNavigate();
-
+  const url = process.env.BACK_URL;
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/board/delete/${post.id}`); // 해당 URL로 수정
+      await axios.delete(url + `board/delete/${post.id}`); // 해당 URL로 수정
       navigate("/");
     } catch (error) {
       console.error("There was an error deleting the post!", error);
